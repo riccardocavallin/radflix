@@ -62,12 +62,12 @@ export default Vue.extend({
   methods: {
     loadAllMovies() {
       this.$http.get('http://localhost:3001/movies').then((response) => {
-        this.movies = response.body
+        this.movies = response.data
       })
     },
     updateSubscription() {
       if(this.tokenSubscription) {
-        this.tokenSubscription.unsubscribe()
+        //this.tokenSubscription.unsubscribe()
       }
 
       if(this.identity) {

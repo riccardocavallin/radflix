@@ -28,6 +28,7 @@ connectDb()
       console.error(err);
     } else {
       console.log('NODE_ENV =', process.env.NODE_ENV);
+      console.log('Port: ', port);
     }
   });
 })

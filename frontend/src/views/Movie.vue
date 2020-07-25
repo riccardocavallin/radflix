@@ -54,7 +54,7 @@ export default Vue.extend({
     loadMovie() {
       if (this.identity) {
         this.$http.get('http://localhost:3001/request-access').then((response) => {
-          const challenge = response.body
+          const challenge = response.data
 
           // Construct and sign the atom
           const data = {challenge}
@@ -65,13 +65,13 @@ export default Vue.extend({
             'radflix', 
             JSON.stringify(data), 
             false).buildAtom()
-          this.identity.signAtom(atom).then((signedAtom) => {
+          this.identity.signAtom(atom).then(() => { //signedAtom
             this.$http.post('http://localhost:3001/movie', {
               movieTokenUri: this.$route.params.id,
               atom: atom.toJSON(),
             }).then((response) => {
               this.loaded = true
-              this.movie = response.body
+              this.movie = response.data
             }, (error) => {
               console.log(error)
               this.loaded = true
